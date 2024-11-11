@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+
+    <link rel="stylesheet" href="./css/chat.css">
+    <script src="https://cdn.socket.io/4.8.0/socket.io.min.js"
+        integrity="sha384-OoIbkvzsFFQAG88r+IqMAjyOtYDPGO0cqK5HF5Uosdy/zUEGySeAzytENMDynREd"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <div class="contact-container">
+                <div id="my-profile">My Profile</div>
+                <div id="my-contacts">
+                    <p>Contact 1</p>
+                    <p>Contact 2</p>
+                    <p>Contact 3</p>
+                    <p>Contact 4</p>
+                    <p>Contact 5</p>
+                    <p>Contact 6</p>
+                </div>
+            </div>
+            <div class="chat-container">
+                <div id="chat-header">Chatting with Tomba</div>
+                <div id="messages">
+                    <p>Hi</p>
+                    <p>Hello</p>
+                    <p>How are IqMAjyOtYDPGO0cqK5HF5Uosdy</p>
+                </div>
+                <form id="msg-form">
+                    <input id="new-msg" type="text">
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="./js/chat.js"></script>
+</body>
+
+</html>

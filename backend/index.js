@@ -19,5 +19,5 @@ const io = new socketIO(server);
 const chatIO = io.of("/chat");
 const signalIO = io.of("/signalling");
 
-chatIO.on("connection", chatHandler);
+chatIO.on("connection", (socket)=>chatHandler(socket, chatIO));
 signalIO.on("connection", handleSignalling);

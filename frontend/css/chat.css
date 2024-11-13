@@ -27,7 +27,8 @@ main {
     width: 300px;
     height: 100%;
     text-align: center;
-    border-right: 1px solid #4a0ca1;;
+    border-right: 1px solid #4a0ca1;
+    ;
 }
 
 #my-profile {
@@ -37,6 +38,33 @@ main {
     font-size: medium;
     line-height: 30px;
     border-bottom: 1px solid #4a0ca1;
+    cursor: text;
+}
+
+#my-profile:hover {
+    background-color: #7858A6;
+}
+
+#edit-profile-container {
+    height: 100%;
+    width: 100%;
+    display: none;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    backdrop-filter: blur(10px);
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+}
+
+#edit-profile-form {
+    position: relative;
+    background-color: var(--primary-color-hex);
+    width: fit-content;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 2px 2px gray;
 }
 
 #my-contacts>p {
@@ -115,7 +143,7 @@ main {
     padding: 0 10px 0 10px;
 }
 
-.msg-form > button {
+.msg-form>button {
     border: none;
     border-radius: 10px;
     padding: 0 15px;
@@ -124,7 +152,7 @@ main {
     color: var(--primary-color-hex);
 }
 
-.msg-form > button:hover {
+.msg-form>button:hover {
     cursor: pointer;
     background-color: rgb(222, 208, 242);
 }

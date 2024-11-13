@@ -17,14 +17,10 @@
     <main>
         <div class="container">
             <div class="contact-container">
-                <div id="my-profile">My Profile</div>
+                <div id="my-profile"></div>
                 <div id="my-contacts">
-                    <p>Contact 1</p>
-                    <p>Contact 2</p>
-                    <p class="current-contact">Contact 3</p>
-                    <p>Contact 4</p>
-                    <p>Contact 5</p>
-                    <p>Contact 6</p>
+                    <!-- <p>Contact 1</p>
+                    <p class="current-contact">Contact 3</p> -->
                 </div>
             </div>
             <div class="chat-container">
@@ -36,12 +32,19 @@
                         IqMAjyOtYDPGO0cqK5HF5Uosdy</p>
                 </div>
                 <div class="msg-form-container">
-                    <form class="msg-form">
+                    <form id="msg-form" class="msg-form">
                         <input id="new-msg" type="text">
                         <button type="submit">Send</button>
                     </form>
                 </div>
             </div>
+        </div>
+        <div id="edit-profile-container">
+            <form id="edit-profile-form">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" autocomplete="off">
+                <button type="reset">Cancel</button><button type="submit">Submit</button>
+            </form>
         </div>
     </main>
 

@@ -88,6 +88,17 @@ export const onChatSelection = (event) => {
     console.log("onChatSelection");
     const destId = event.target.id;
     const destName = event.target.textContent;
+
+    if (window.innerWidth <= 600) {
+        const contactContainer = document.querySelector(".contact-container");
+        console.log("contactContainer", contactContainer);
+        contactContainer.classList.add("hide");
+
+        const chatContainer = document.querySelector(".chat-container");
+        console.log("chatContainer", chatContainer);
+        chatContainer.classList.remove("hide");
+    }
+
     chatHeader.textContent = "Chatting with " + destName;
     chatHeader.setAttribute("data-socket", destId);
     //remove current-chat from old contact and put in new contact
@@ -187,4 +198,27 @@ function onChatDest({ msg, src, roomId }) {
     }
     //latest messages are visible
     chats.scrollTop = chats.scrollHeight;
+}
+
+export const onBack = (event) => {
+    console.log("on back");
+    const chatContainer = document.querySelector(".chat-container");
+    console.log("chatContainer", chatContainer);
+    chatContainer.classList.add("hide");
+
+    const contactContainer = document.querySelector(".contact-container");
+    console.log("contactContainer", contactContainer);
+    contactContainer.classList.remove("hide");
+}
+
+export const onScreenResize = (event) => {
+    if (window.innerWidth > 600) {
+        const chatContainer = document.querySelector(".chat-container");
+        console.log("chatContainer", chatContainer);
+        chatContainer.classList.remove("hide");
+
+        const contactContainer = document.querySelector(".contact-container");
+        console.log("contactContainer", contactContainer);
+        contactContainer.classList.remove("hide");
+    }
 }

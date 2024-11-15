@@ -1,13 +1,15 @@
 import {
     onAlias,
     onAllConnections,
+    onBack,
     onChat,
     onCloseEditProfile,
     onEditProfile,
     onMsgSubmit,
     onPeerConnection,
     onPeerDisconnected,
-    onProfileClicked
+    onProfileClicked,
+    onScreenResize
 } from "./chat-handlers.js";
 
 document.addEventListener("DOMContentLoaded", (ev) => {
@@ -24,11 +26,14 @@ document.addEventListener("DOMContentLoaded", (ev) => {
     const msgForm = document.getElementById("msg-form");
     const myProfile = document.getElementById("my-profile");
     const editProfileForm = document.getElementById("edit-profile-form");
+    const backIcon = document.getElementById("back-icon");
 
     editProfileForm.onreset = onCloseEditProfile;
     editProfileForm.onsubmit = (event) => onEditProfile(event, socket);
     myProfile.addEventListener("click", onProfileClicked);
     msgForm.onsubmit = (event) => onMsgSubmit(event, socket);
+    backIcon.onclick = onBack;
+    // window.onresize = onScreenResize;
 
     socket.on("all-connections", (connections) => onAllConnections(connections, socket));   //recieved at first connect
     socket.on("peer-connection", onPeerConnection); //recieved on new peer connections

@@ -28,7 +28,6 @@ main {
     height: 100%;
     text-align: center;
     border-right: 1px solid #4a0ca1;
-    ;
 }
 
 #my-profile {
@@ -73,6 +72,7 @@ main {
     line-height: 30px;
     font-size: medium;
     font-weight: 400;
+    width: 100%;
 }
 
 #my-contacts>p:hover {
@@ -81,13 +81,24 @@ main {
     color: white;
 }
 
-.current-contact {
+.current-chat {
     background-color: #531d9f;
+}
+
+.unread-msg {
+    height: 10px;
+    width: 10px;
+    background-color: white;
+    margin-left: 10px;
+    display: inline-block;
+    border-radius: 100%;
 }
 
 .chat-container {
     width: 100%;
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 #chat-header {
@@ -102,6 +113,12 @@ main {
 
 #chats {
     padding: 0 20px;
+    overflow-y: auto;
+    flex: 1;
+    margin-bottom: 30px;
+    scrollbar-width: none;
+    /* display: flex;
+    flex-direction: column-reverse; */
 }
 
 
@@ -135,6 +152,7 @@ main {
     border-radius: 10px;
     text-wrap: wrap;
     box-sizing: border-box;
+    background-color: var(--primary-color-hex);
 }
 
 #new-msg {
@@ -169,4 +187,19 @@ main {
 
 #new-msg:focus {
     background-color: #4c1994;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+}
+
+.popover {
+    padding: 20px;
+    background-color: white;
+    font-size: large;
+    font-weight: 600;
 }

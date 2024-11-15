@@ -22,15 +22,13 @@ document.addEventListener("DOMContentLoaded", (ev) => {
     });
 
     const msgForm = document.getElementById("msg-form");
-    const newMsg = document.getElementById("new-msg");
-    const chatContainer = document.querySelector("#chat-container");
     const myProfile = document.getElementById("my-profile");
     const editProfileForm = document.getElementById("edit-profile-form");
 
     editProfileForm.onreset = onCloseEditProfile;
     editProfileForm.onsubmit = (event) => onEditProfile(event, socket);
     myProfile.addEventListener("click", onProfileClicked);
-    msgForm.onsubmit = onMsgSubmit;
+    msgForm.onsubmit = (event) => onMsgSubmit(event, socket);
 
     socket.on("all-connections", (connections) => onAllConnections(connections, socket));   //recieved at first connect
     socket.on("peer-connection", onPeerConnection); //recieved on new peer connections

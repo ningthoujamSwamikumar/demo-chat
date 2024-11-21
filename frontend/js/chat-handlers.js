@@ -5,6 +5,9 @@ const chatHeader = document.getElementById("chat-header");
 const chats = document.getElementById("chats");
 const newMsg = document.getElementById("new-msg");
 const usernameInput = document.getElementById("username");
+const chatContainer = document.getElementById("chat-container");
+const contactContainer = document.getElementById("contact-container");
+const backIcon = document.getElementById("back-icon");
 
 export const onAllConnections = (connections, socket) => {
     console.log("all-connections");
@@ -64,6 +67,10 @@ export const onAlias = ({ id, alias }, socket) => {
 
 export const onProfileClicked = (event) => {
     editProfileContainer.style.display = "flex";
+    if(usernameInput){
+        console.log("calling focus on username input");
+        usernameInput.focus();
+    }
 }
 
 export const onCloseEditProfile = (event) => {
@@ -90,12 +97,7 @@ export const onChatSelection = (event) => {
     const destName = event.target.textContent;
 
     if (window.innerWidth <= 600) {
-        const contactContainer = document.querySelector(".contact-container");
-        console.log("contactContainer", contactContainer);
         contactContainer.classList.add("hide");
-
-        const chatContainer = document.querySelector(".chat-container");
-        console.log("chatContainer", chatContainer);
         chatContainer.classList.remove("hide");
     }
 
@@ -201,24 +203,22 @@ function onChatDest({ msg, src, roomId }) {
 }
 
 export const onBack = (event) => {
-    console.log("on back");
-    const chatContainer = document.querySelector(".chat-container");
-    console.log("chatContainer", chatContainer);
     chatContainer.classList.add("hide");
-
-    const contactContainer = document.querySelector(".contact-container");
-    console.log("contactContainer", contactContainer);
     contactContainer.classList.remove("hide");
 }
 
 export const onScreenResize = (event) => {
-    if (window.innerWidth > 600) {
-        const chatContainer = document.querySelector(".chat-container");
-        console.log("chatContainer", chatContainer);
+    if (window.innerWidth <= 600) {
+        if(chatHeader.getAttribute("data-socket")){
+            backIcon.classList.remove("hide");
+            contactContainer.classList.add("hide");
+        }else{
+            chatContainer.classList.add("hide");
+            contactContainer.classList.remove("hide");
+        }
+    }else{
         chatContainer.classList.remove("hide");
-
-        const contactContainer = document.querySelector(".contact-container");
-        console.log("contactContainer", contactContainer);
         contactContainer.classList.remove("hide");
+        backIcon.classList.add("hide");
     }
 }

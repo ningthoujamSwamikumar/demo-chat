@@ -5,7 +5,7 @@ body {
 }
 
 .hide {
-    font-size: inherit;
+    display: none !important;
 }
 
 .material-symbols-outlined {
@@ -80,6 +80,12 @@ main {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 2px 2px gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 4px;
+    column-gap: 4px;
 }
 
 #my-contacts>p {
@@ -206,14 +212,6 @@ main {
     background-color: #4c1994;
 }
 
-.material-symbols-outlined {
-    font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 24
-}
-
 .popover {
     padding: 20px;
     background-color: white;
@@ -222,7 +220,7 @@ main {
 }
 
 /* media queries */
-@media (min-width: 600px) {
+@media (min-width: 601px) {
     .container {
         width: 80%;
         height: 80%;
@@ -237,14 +235,10 @@ main {
     .chat {
         max-width: 60%;
     }
-
-    .material-symbols-outlined {
-        display: none !important;
-    }
 }
 
 @media (max-width: 600px) {
-    .hide {
-        display: none !important;
+    #edit-profile-form {
+        margin: 0 4px;
     }
 }

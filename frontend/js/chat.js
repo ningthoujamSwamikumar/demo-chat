@@ -12,6 +12,8 @@ import {
     onScreenResize
 } from "./chat-handlers.js";
 
+onScreenResize();
+
 document.addEventListener("DOMContentLoaded", (ev) => {
 
     const socket = io("http://localhost:3500/chat", {
@@ -33,7 +35,7 @@ document.addEventListener("DOMContentLoaded", (ev) => {
     myProfile.addEventListener("click", onProfileClicked);
     msgForm.onsubmit = (event) => onMsgSubmit(event, socket);
     backIcon.onclick = onBack;
-    // window.onresize = onScreenResize;
+    window.onresize = onScreenResize;
 
     socket.on("all-connections", (connections) => onAllConnections(connections, socket));   //recieved at first connect
     socket.on("peer-connection", onPeerConnection); //recieved on new peer connections

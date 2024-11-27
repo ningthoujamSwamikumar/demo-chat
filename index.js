@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import path from 'path';
-import { Server as socketIO } from "socket.io";
+import { Server } from "socket.io";
 import { chatHandler } from "./src/chat.js";
 
 const __dirname = path.resolve();
@@ -14,17 +14,12 @@ const server = app.listen(port, '0.0.0.0', () => {
     console.log("Server listening on port 0.0.0.0:3500");
 });
 
-const io = new socketIO(server, { cors: { origin: '*' } });
-const chatIO = io.of("/chat");
+const io = new Server(server);
 
-chatIO.on("connection", (socket) => chatHandler(socket, chatIO));
+io.on("connection", (socket) => chatHandler(socket, io));
 
 io.engine.on("connection_error", (err) => {
     console.log("io connection_error", err);
-})
-
-chatIO.on("connection_error", (err) => {
-    console.log("chatIO connection_error", err);
 })
 
 /*

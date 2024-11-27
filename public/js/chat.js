@@ -27,14 +27,16 @@ onScreenResize();
 
 document.addEventListener("DOMContentLoaded", (ev) => {
 
-    const socket = io("http://localhost:3500/chat", {
-        transports: ['websocket', 'polling', 'flashsocket'],
-        cors: {
-            origin: "http://localhost:3000",
-            credentials: true
-        },
-        withCredentials: true
-    });
+    const socket = io(
+        // "http://localhost:3500/chat", {
+        // transports: ['websocket', 'polling', 'flashsocket'],
+        // cors: {
+        //     origin: "http://localhost:3000",
+        //     credentials: true
+        // },
+        // withCredentials: true
+        // }
+    );
 
     socket.on("connect_error", (err) => {
         console.log("connect_error", err);

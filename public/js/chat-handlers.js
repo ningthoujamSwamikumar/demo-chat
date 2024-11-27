@@ -8,12 +8,18 @@ const usernameInput = document.getElementById("username");
 const chatContainer = document.getElementById("chat-container");
 const contactContainer = document.getElementById("contact-container");
 const backIcon = document.getElementById("back-icon");
+const callsContainer = document.getElementById("calls-container");
 
+/**
+ * handles all-connections event, called on new connection
+ * @listens Socket#all-connections
+ * @param {Object.<string, string>} connections object that has all the clients connected
+ * @param {Object} socket socket object, holding the client and server connection
+ */
 export const onAllConnections = (connections, socket) => {
-    console.log("all-connections");
+    console.log("onAllConnections");
     myContacts.innerHTML = '';
     for (const [id, name] of Object.entries(connections)) {
-        console.log("id:", id, "name:", name);
         if (id === socket.id) {
             if (name) myProfile.textContent = name.length > 10 ? name.slice(0, 10) + "..." : name;
             else myProfile.textContent = id.length > 10 ? id.slice(0, 10) + "..." : id;
@@ -67,7 +73,7 @@ export const onAlias = ({ id, alias }, socket) => {
 
 export const onProfileClicked = (event) => {
     editProfileContainer.style.display = "flex";
-    if(usernameInput){
+    if (usernameInput) {
         console.log("calling focus on username input");
         usernameInput.focus();
     }
@@ -93,16 +99,16 @@ const messages = {
 
 export const onChatSelection = (event) => {
     console.log("onChatSelection");
-    const destId = event.target.id;
-    const destName = event.target.textContent;
+    updateChatHeader(event);
 
     if (window.innerWidth <= 600) {
         contactContainer.classList.add("hide");
         chatContainer.classList.remove("hide");
+        backIcon.classList.remove("hide");
     }
 
-    chatHeader.textContent = "Chatting with " + destName;
-    chatHeader.setAttribute("data-socket", destId);
+    callsContainer.classList.remove("hide");
+
     //remove current-chat from old contact and put in new contact
     const oldContact = document.querySelector(".current-chat");
     if (oldContact) oldContact.classList.remove("current-chat");
@@ -129,6 +135,13 @@ export const onChatSelection = (event) => {
 
     //latest messages are visible
     chats.scrollTop = chats.scrollHeight;
+}
+
+const updateChatHeader = (event) => {
+    const destId = event.target.id;
+    const destName = event.target.textContent;
+    chatHeader.textContent = "Chatting with " + destName;
+    chatHeader.setAttribute("data-socket", destId);
 }
 
 export const onMsgSubmit = (event, socket) => {
@@ -209,14 +222,14 @@ export const onBack = (event) => {
 
 export const onScreenResize = (event) => {
     if (window.innerWidth <= 600) {
-        if(chatHeader.getAttribute("data-socket")){
+        if (chatHeader.getAttribute("data-socket")) {
             backIcon.classList.remove("hide");
             contactContainer.classList.add("hide");
-        }else{
+        } else {
             chatContainer.classList.add("hide");
             contactContainer.classList.remove("hide");
         }
-    }else{
+    } else {
         chatContainer.classList.remove("hide");
         contactContainer.classList.remove("hide");
         backIcon.classList.add("hide");

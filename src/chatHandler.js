@@ -1,10 +1,11 @@
 import { v4 as uuidv4 } from "uuid";
 
-export const onNewConnection = (socket, connections) => {
+export const onNewConnection = (socket, io, connections) => {
     connections[socket.id] = "";
     socket.data.username = "";
     console.log("socket.id: ", socket.id, "connections:", connections);
-    socket.emit("all-connections", connections);
+    //socket.emit("all-connections", connections);
+    io.to(socket.id).emit("all-connections", connections);
     socket.broadcast.emit("peer-connection", { id: socket.id });
 }
 

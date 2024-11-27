@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+
+    <link rel="stylesheet" href="./css/chat.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="https://cdn.socket.io/4.8.0/socket.io.min.js"
+        integrity="sha384-OoIbkvzsFFQAG88r+IqMAjyOtYDPGO0cqK5HF5Uosdy/zUEGySeAzytENMDynREd"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <div id="contact-container" class="contact-container">
+                <div id="my-profile" title="rename"></div>
+                <div id="my-contacts" title="click to chat"></div>
+            </div>
+            <div id="chat-container" class="chat-container">
+                <div class="chat-head-container">
+                    <span id="back-icon" class="material-symbols-outlined">arrow_back</span>
+                    <div class="chat-head-sub-container">
+                        <div id="chat-header">Select a contact to chat</div>
+                        <div id="calls-container" class="calls-container hide">
+                            <span id="voice-call" class="material-symbols-outlined clickable-icon">call</span>
+                            <span id="video-call" class="material-symbols-outlined clickable-icon">videocam</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="chats"></div>
+                <div class="msg-form-container">
+                    <form id="msg-form" class="msg-form">
+                        <input id="new-msg" type="text" autocomplete="off">
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="edit-profile-container">
+            <form id="edit-profile-form">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" placeholder="Username" autocomplete="off">
+                <button type="reset">Cancel</button><button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <!-- <button popovertarget="incoming-call">Popover</button> -->
+        <div id="incoming-call" class="current-calls-popup" popover="manual">
+            <div class="current-calls-container">
+                <p id="incoming-title" class="incoming-call">Incoming voice call from Swami</p>
+                <p id="incoming-status">Connected | Disconnected</p>
+                <video id="incoming-video" autoplay class="video-stream hide"></video>
+                <p id="incoming-controls" class="incoming-controls hide">
+                    <span id="incoming-control-mic" class="material-symbols-outlined clickable-icon hide">mic</span>
+                    <span id="incoming-control-mic_off"
+                        class="material-symbols-outlined clickable-icon hide">mic_off</span>
+                    <span id="incoming-control-videocam"
+                        class="material-symbols-outlined clickable-icon hide">videocam</span>
+                    <span id="incoming-control-videocam_off"
+                        class="material-symbols-outlined clickable-icon hide">videocam_off</span>
+                </p>
+                <p id="incoming-response-action" class="call-response-container">
+                    <button id="incoming-reject">Reject</button>
+                    <button id="incoming-answer">Answer</button>
+                </p>
+                <p id="incoming-action" class="hide">
+                    <button id="incoming-disconnect" class="">Discononect</button>
+                </p>
+            </div>
+        </div>
+        <div id="outgoing-call" class="current-calls-popup" popover="manual">
+            <div class="current-calls-container">
+                <p id="outgoing-title">Voice call to Babina</p>
+                <p id="outgoing-status">Initiating | Connecting | Connected | Timeout | Busy | Disconnected</p>
+                <video id="outgoing-video" autoplay class="video-stream hide"></video>
+                <p id="outgoing-controls" class="outgoing-controls hide">
+                    <span id="outgoing-control-mic" class="material-symbols-outlined clickable-icon hide">mic</span>
+                    <span id="outgoing-control-mic_off"
+                        class="material-symbols-outlined clickable-icon hide">mic_off</span>
+                    <span id="outgoing-control-videocam"
+                        class="material-symbols-outlined clickable-icon hide">videocam</span>
+                    <span id="outgoing-control-videocam_off"
+                        class="material-symbols-outlined clickable-icon hide">videocam_off</span>
+                </p>
+                <p id="outgoing-action">
+                    <button id="outgoing-disconnect">Disconnect</button>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="./js/chat.js"></script>
+</body>
+
+</html>
+</div>
+</main>
+
+<script type="module" src="./js/chat.js"></script>
+</body>
+
+</html>

@@ -13,7 +13,14 @@ body {
         'FILL' 0,
         'wght' 400,
         'GRAD' 0,
-        'opsz' 24
+        'opsz' 24;
+    cursor: pointer;
+}
+
+.material-symbols-outlined:hover {
+    background-color: #3c1178;
+    box-shadow: 0 0 20px #4c1994;
+    border-radius: 100%;
 }
 
 main {
@@ -128,13 +135,25 @@ main {
     border-bottom: 1px solid #4a0ca1;
 }
 
+.chat-head-sub-container {
+    display: flex;
+    width: 100%;
+}
+
 #chat-header {
     width: 100%;
+    justify-self: center;
     height: 30px;
     font-weight: 800;
     font-size: medium;
     line-height: 30px;
     text-align: center;
+}
+
+.calls-container {
+    display: flex;
+    width: 20%;
+    justify-content: space-around;
 }
 
 #chats {
@@ -214,10 +233,50 @@ main {
 
 .popover {
     padding: 20px;
-    background-color: white;
+    background-color: red;
     font-size: large;
     font-weight: 600;
 }
+
+/* current calls */
+.current-calls-popup {
+    padding: 0;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 2px 2px gray;
+}
+
+.current-calls-popup::backdrop {
+    backdrop-filter: blur(10px);
+}
+
+.current-calls-container {
+    background-color: #330a6e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    color: white;
+    padding: 10px;
+}
+
+.clickable-icon {
+    border-radius: 100%;
+    padding: 0.5rem;
+}
+
+.clickable-icon:hover {
+    background-color: #531d9f;
+    cursor: pointer;
+}
+
+.video-stream {
+    height: 50dvh;
+    width: 50dvw;
+    background-color: black;
+}
+
 
 /* media queries */
 @media (min-width: 601px) {

@@ -231,13 +231,6 @@ main {
     background-color: #4c1994;
 }
 
-.popover {
-    padding: 20px;
-    background-color: red;
-    font-size: large;
-    font-weight: 600;
-}
-
 /* current calls */
 .current-calls-popup {
     padding: 0;
@@ -299,5 +292,14 @@ main {
 @media (max-width: 600px) {
     #edit-profile-form {
         margin: 0 4px;
+    }
+
+    .video-stream {
+        width: 98%;
+        height: 80%;
+    }
+
+    .current-calls-container {
+        width: 100dvw;
     }
 }

@@ -1,5 +1,4 @@
 import express from "express";
-import cors from "cors";
 import path from 'path';
 import { Server } from "socket.io";
 import { chatHandler } from "./src/chat.js";

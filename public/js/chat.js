@@ -4,10 +4,10 @@ import {
     onSdp,
     onCandidate,
     onIncomingAnswer,
-    onIncomingReject,
-    onOutgoingDisconnect,
-    onIncomingDisconnect,
-    onCallReject
+    onRejectIncoming,
+    onOutgoingCallDisconnect,
+    onIncomingCallDisconnect,
+    onCallDisconnection
 } from "./call-handlers.js";
 import {
     onAlias,
@@ -27,16 +27,7 @@ onScreenResize();
 
 document.addEventListener("DOMContentLoaded", (ev) => {
 
-    const socket = io(
-        // "http://localhost:3500/chat", {
-        // transports: ['websocket', 'polling', 'flashsocket'],
-        // cors: {
-        //     origin: "http://localhost:3000",
-        //     credentials: true
-        // },
-        // withCredentials: true
-        // }
-    );
+    const socket = io();
 
     socket.on("connect_error", (err) => {
         console.log("connect_error", err);
@@ -50,8 +41,8 @@ document.addEventListener("DOMContentLoaded", (ev) => {
     const videoCall = document.getElementById("video-call");
     const incomingReject = document.getElementById("incoming-reject");
     const incomingAnswer = document.getElementById("incoming-answer");
-    const outgoingDisconnect = document.getElementById("outgoing-disconnect");
-    const incomingDisconnect = document.getElementById("incoming-disconnect");
+    const outgoingCallDisconnect = document.getElementById("outgoing-call-disconnect");
+    const incomingCallDisconnect = document.getElementById("incoming-call-disconnect");
 
     editProfileForm.onreset = onCloseEditProfile;
     editProfileForm.onsubmit = (event) => onEditProfile(event, socket);
@@ -61,10 +52,10 @@ document.addEventListener("DOMContentLoaded", (ev) => {
     window.onresize = onScreenResize;
     voiceCall.onclick = (event) => onPhoneClicked(event, socket);
     videoCall.onclick = (event) => onVideoClicked(event, socket);
-    outgoingDisconnect.onclick = (event) => onOutgoingDisconnect(event, socket);
+    outgoingCallDisconnect.onclick = (event) => onOutgoingCallDisconnect(event, socket);
     incomingAnswer.onclick = (event) => onIncomingAnswer(event, socket);
-    incomingReject.onclick = (event) => onIncomingReject(event, socket);
-    incomingDisconnect.onclick = (event) => onIncomingDisconnect(event, socket);
+    incomingReject.onclick = (event) => onRejectIncoming(event, socket);
+    incomingCallDisconnect.onclick = (event) => onIncomingCallDisconnect(event, socket);
 
     socket.on("all-connections", (connections) => onAllConnections(connections, socket));   //recieved at first connect
     socket.on("peer-connection", onPeerConnection); //recieved on new peer connections
@@ -73,5 +64,5 @@ document.addEventListener("DOMContentLoaded", (ev) => {
     socket.on("chat", onChat);
     socket.on("sdp", (payload) => onSdp(payload, socket));
     socket.on("candidate", (payload) => onCandidate(payload, socket));
-    socket.on("call-reject", onCallReject)
+    socket.on("call-disconnect", onCallDisconnection)
 })

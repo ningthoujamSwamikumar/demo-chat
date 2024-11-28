@@ -36,18 +36,11 @@ export const onCandidate = (payload, peerRooms, peersOnCalls, socket, io) => {
     socket.to(roomId).emit("candidate", payload);
 }
 
-export const onCallRejection = (payload, peerRooms, peersOnCalls, socket, io) => {
-    console.log("on offer rejection");
-    const { src, dest } = payload;
-    let roomId = lookupOrCreateRoom(src, dest, peerRooms, io);
-    socket.to(roomId).emit("call-disconnect", payload);
-    delete peersOnCalls[src];
-    delete peersOnCalls[dest];
-}
-
-export const onCallDisconnection = (payload, peersOnCalls) => {
+export const onCallDisconnection = (payload, peerRooms, peersOnCalls, socket, io) => {
     console.log("on call disconnection");
     const { src, dest } = payload;
     if (peersOnCalls[src]) delete peersOnCalls[src];
     if (peersOnCalls[dest]) delete peersOnCalls[dest];
+    let roomId = lookupOrCreateRoom(src, dest, peerRooms, io);
+    socket.to(roomId).emit("call-disconnect", payload);
 }

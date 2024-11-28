@@ -1,4 +1,4 @@
-import { onSdp, onCandidate, onCallRejection, onCallDisconnection } from "./callHandler.js";
+import { onSdp, onCandidate, onCallDisconnection } from "./callHandler.js";
 import { onNewConnection, onAlias, onDisconnect, onChat } from "./chatHandler.js"
 /**
 * Represents a mapping from source ID to a nested object containing destination IDs and room IDs. 
@@ -35,9 +35,9 @@ export const chatHandler = (socket, io) => {
 
     socket.on("sdp", (payload, callback) => onSdp(payload, callback, peerRooms, peersOnCalls, socket, io));
 
-    socket.on("call-reject", (payload) => onCallRejection(payload, peerRooms, peersOnCalls, socket, io));
+    //socket.on("call-reject", (payload) => onCallRejection(payload, peerRooms, peersOnCalls, socket, io));
 
-    socket.on("call-disconnect", (payload) => onCallDisconnection(payload, peersOnCalls));
+    socket.on("call-disconnect", (payload) => onCallDisconnection(payload, peerRooms, peersOnCalls, socket, io));
 
     socket.on("candidate", (payload) => onCandidate(payload, peerRooms, peersOnCalls, socket, io));
 }

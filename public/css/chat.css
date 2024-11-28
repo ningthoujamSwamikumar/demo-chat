@@ -2,6 +2,13 @@ body {
     --primary-color-hex: #330a6e;
     padding: 0;
     margin: 0;
+    position: relative;
+}
+
+.freepik {
+    position: absolute;
+    top: 0;
+    color: #4c1994;
 }
 
 .hide {
@@ -267,7 +274,8 @@ main {
 .video-stream {
     height: 50dvh;
     width: 50dvw;
-    background-color: black;
+    background: #fff url('../user_avatar.png') center/contain no-repeat;
+
 }
 
 
